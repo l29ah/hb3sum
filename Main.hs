@@ -15,5 +15,5 @@ main = do
 	forM_ files $ \file -> do
 		bsMapped <- mmapFileByteString file Nothing
 		bs <- if B.length bsMapped > 0 then pure bsMapped else B.readFile file
-		let digest :: Digest 32 = hash [bs]
+		let digest :: Digest 32 = hash Nothing [bs]
 		putStrLn (show digest ++ "\t" ++ file)
